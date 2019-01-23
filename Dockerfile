@@ -34,8 +34,9 @@ WORKDIR /root
 
 EXPOSE 8080
 
-# Configure screen
-RUN echo "startup_message off" >> /root/.screenrc
-RUN echo 'shell "/usr/bin/zsh"' >> /root/.screenrc
+# Configure tmux
+RUN git clone https://github.com/gpakosz/.tmux.git
+RUN ln -s -f .tmux/.tmux.conf
+RUN cp .tmux/.tmux.conf.local .
 
 # start image with docker run -it -p 8080:8080 dev /bin/zsh
