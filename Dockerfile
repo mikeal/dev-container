@@ -7,10 +7,16 @@ RUN apt-get update && apt-get install -y \
   git \
   vim \
   zsh \
-  screen \
+  tmux \
+  locales \
   curl
 
 RUN zsh -c exit
+
+# Configure locale
+
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+RUN locale-gen
 
 # Configure zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
