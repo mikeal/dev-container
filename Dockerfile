@@ -3,8 +3,6 @@ FROM node:10
 
 WORKDIR /root
 
-COPY . /root/
-
 RUN apt-get update && apt-get install -y \
   git \
   vim \
@@ -16,6 +14,10 @@ RUN zsh -c exit
 
 # Configure zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Configure screen
+RUN echo "startup_message off" >> /root/.screenrc
+RUN echo 'shell "/usr/bin/zsh"' >> /root/.screenrc
 
 # Configure npm
 RUN echo "export PATH=$PATH:./node_modules/.bin" >> /root/.zshrc
