@@ -18,6 +18,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh
 # Configure screen
 RUN echo "startup_message off" >> /root/.screenrc
 RUN echo 'shell "/usr/bin/zsh"' >> /root/.screenrc
+RUN echo "screen -U" >> /root/.profile
 
 # Configure npm
 RUN echo "export PATH=$PATH:./node_modules/.bin" >> /root/.zshrc
