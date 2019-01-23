@@ -29,17 +29,6 @@ RUN git config --global user.email mikeal.rogers@gmail.com
 RUN git config --global core.editor vim
 RUN git config --global credential.helper 'store --file ~/.git-credentials'
 
-RUN git clone https://github.com/mikeal/mikealrogers.com.git
-RUN git clone https://github.com/ProtoSchool/protoschool.github.io.git
-RUN git clone https://github.com/protocol/github-org-metrics.git
-
-WORKDIR /root/mikealrogers.com
-RUN npm install
-WORKDIR /root/protoschool
-RUN npm install
-WORKDIR /root/github-org-metrics
-RUN npm install
-
 WORKDIR /root
 
 EXPOSE 8080
