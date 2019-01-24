@@ -2,10 +2,10 @@
 
 eval $(op signin https://my.1password.com mikeal.rogers@gmail.com)
 
-SCRIPT=$(op get item ConfigureDev)
+SCRIPT=$(op get document add-secrets.sh)
 RESULT=$?
 if [ $RESULT -eq 0 ]; then
-  echo SCRIPT | jq -r '.details.notesPlain' | sh
+  echo $SCRIPT | sh
   echo "Added Secrets :)"
   tmux
 else
