@@ -27,48 +27,51 @@ RUN locale-gen
 
 # Configure zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-RUN echo "export LC_CTYPE=en_US.UTF-8" >> ~/.zshrc
+
+RUN echo "\n\
+export PATH=$PATH:./node_modules/.bin \n\
+export LC_CTYPE=en_US.UTF-8 \n\
+ZSH_THEME=dracula \n\
+" >> ~/.zshrc
+
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
-RUN echo 'ZSH_THEME="dracula"' >> ~/.zshrc
 
 # Configure vim
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-RUN mkdir -p ~/.vim/colors
-RUN curl -L https://raw.githubusercontent.com/dracula/vim/master/colors/dracula.vim > ~/.vim/colors/dracula.vim
-RUN echo "call plug#begin('~/.vim/plugged')" >> ~/.vimrc
-RUN echo "Plug 'vim-scripts/SyntaxComplete'" >> ~/.vimrc
-RUN echo "Plug 'sheerun/vim-polyglot'" >> ~/.vimrc
-# RUN echo "Plug 'ahayman/vim-nodejs-complete'" >> ~/.vimrc
-# RUN echo "Plug 'pangloss/vim-javascript'" >> ~/.vimrc
-# RUN echo "Plug 'othree/javascript-libraries-syntax.vim'" >> ~/.vimrc
-RUN echo "call plug#end()" >> ~/.vimrc
-RUN echo "syntax on" >> ~/.vimrc
-RUN echo "color dracula" >> ~/.vimrc
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
+    mkdir -p ~/.vim/colors && \
+    curl -L \
+    https://raw.githubusercontent.com/dracula/vim/master/colors/dracula.vim > ~/.vim/colors/dracula.vim
+
+
+RUN echo "\n\
+call plug#begin('~/.vim/plugged') \n\
+Plug 'vim-scripts/SyntaxComplete' \n\
+Plug 'sheerun/vim-polyglot' \n\
+call plug#end() \n\
+syntax on \n\
+color dracula \n\
+highlight Visual cterm=reverse ctermbg=NONE \n\
+set tabstop=2 \n\
+set shiftwidth=2 \n\
+set softtabstop=2 \n\
+set expandtab \n\
+" >> ~/.vimrc
+
 RUN vim +PlugInstall +qall
 
-RUN echo "set tabstop=2" >> ~/.vimrc
-RUN echo "set shiftwidth=2" >> ~/.vimrc
-RUN echo "set softtabstop=2" >> ~/.vimrc
-RUN echo "set expandtab" >> ~/.vimrc
-
-# Configure npm
-RUN echo "export PATH=$PATH:./node_modules/.bin" >> /root/.zshrc
-
 # Configure git
-RUN git config --global user.name "Mikeal Rogers"
-RUN git config --global user.email mikeal.rogers@gmail.com
-RUN git config --global core.editor vim
-RUN git config --global credential.helper 'store --file ~/.git-credentials'
-
-WORKDIR /root
+RUN git config --global user.name "Mikeal Rogers" && \
+    git config --global user.email mikeal.rogers@gmail.com && \
+    git config --global core.editor vim && \
+    git config --global credential.helper 'store --file ~/.git-credentials'
 
 EXPOSE 8080
 
 # Configure tmux
-RUN git clone https://github.com/gpakosz/.tmux.git
-RUN ln -s -f .tmux/.tmux.conf
-RUN cp .tmux/.tmux.conf.local .
+RUN git clone https://github.com/gpakosz/.tmux.git && \
+    ln -s -f .tmux/.tmux.conf && \
+    cp .tmux/.tmux.conf.local .
 
 COPY start.sh .start
 
