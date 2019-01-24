@@ -56,6 +56,7 @@ set tabstop=2 \n\
 set shiftwidth=2 \n\
 set softtabstop=2 \n\
 set expandtab \n\
+set number \n\
 " >> ~/.vimrc
 
 RUN vim +PlugInstall +qall
