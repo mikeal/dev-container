@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
   locales \
   curl \
   unzip \
+  awscli \
   jq
 
 RUN zsh -c exit
@@ -43,11 +44,11 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     curl -L \
     https://raw.githubusercontent.com/dracula/vim/master/colors/dracula.vim > ~/.vim/colors/dracula.vim
 
-
 RUN echo "\n\
 call plug#begin('~/.vim/plugged') \n\
 Plug 'vim-scripts/SyntaxComplete' \n\
 Plug 'sheerun/vim-polyglot' \n\
+Plug '907th/vim-auto-save' \n\
 call plug#end() \n\
 syntax on \n\
 color dracula \n\
@@ -57,6 +58,8 @@ set shiftwidth=2 \n\
 set softtabstop=2 \n\
 set expandtab \n\
 set number \n\
+let g:auto_save = 1 \n\
+let g:auto_save_silent = 1 \n\
 " >> ~/.vimrc
 
 RUN vim +PlugInstall +qall
@@ -75,5 +78,7 @@ RUN git clone https://github.com/gpakosz/.tmux.git && \
     cp .tmux/.tmux.conf.local .
 
 COPY start.sh .start
+
+RUN mkdir -p /root/.aws
 
 # start image with docker run -it -p 8080:8080 dev /root/.start
