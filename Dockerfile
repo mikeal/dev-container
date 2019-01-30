@@ -62,6 +62,15 @@ let g:auto_save = 1 \n\
 let g:auto_save_silent = 1 \n\
 " >> ~/.vimrc
 
+RUN echo "\n\
+access=public\n\
+init-author-name=Mikeal Rogers\n\
+init-author-email=mikeal.rogers@gmail.com\n\
+init-author-url=https://www.mikealrogers.com/\n\
+init-license=(Apache-2.0 AND MIT)\n\
+init-version=1.0.0\n\
+" >> ~/.npmrc
+
 RUN vim +PlugInstall +qall
 
 # Configure git
