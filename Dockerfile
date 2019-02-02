@@ -30,7 +30,7 @@ RUN locale-gen
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 RUN echo "\n\
-export PATH=$PATH:./node_modules/.bin \n\
+export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
 export LC_CTYPE=en_US.UTF-8 \n\
 ZSH_THEME=dracula \n\
 " >> ~/.zshrc
