@@ -7,7 +7,7 @@ RESULT=$?
 if [ $RESULT -eq 0 ]; then
   echo $SCRIPT | sh
   echo "Added Secrets :)"
-  tmux
+  zsh
 else
   echo "Login failed :("
   exit
