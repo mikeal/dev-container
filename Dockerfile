@@ -34,6 +34,7 @@ RUN echo "\n\
 export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
 export LC_CTYPE=en_US.UTF-8 \n\
 ZSH_THEME=dracula \n\
+alias coverage='npx http-server coverage' \n\
 " >> ~/.zshrc
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
