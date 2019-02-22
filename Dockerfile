@@ -33,7 +33,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh
 RUN echo "\n\
 export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
 export LC_CTYPE=en_US.UTF-8 \n\
-ZSH_THEME=dracula \n\
 alias coverage='npx http-server coverage' \n\
 " >> ~/.zshrc
 
@@ -53,7 +52,6 @@ Plug 'sheerun/vim-polyglot' \n\
 Plug '907th/vim-auto-save' \n\
 call plug#end() \n\
 syntax on \n\
-color dracula \n\
 highlight Visual cterm=reverse ctermbg=NONE \n\
 set tabstop=2 \n\
 set shiftwidth=2 \n\
