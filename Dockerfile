@@ -5,7 +5,7 @@ WORKDIR /root
 
 RUN apt-get update && apt-get install -y \
   git \
-  vim \
+  neovim \
   zsh \
   tmux \
   locales \
@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
   unzip \
   awscli \
   net-tools \
+  build-essential \
   jq
 
 RUN zsh -c exit
@@ -34,6 +35,8 @@ RUN echo "\n\
 export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
 export LC_CTYPE=en_US.UTF-8 \n\
 alias coverage='npx http-server coverage' \n\
+export AWS_REGION=us-west-2 \n\
+export AWS_PROFILE=pl \n\
 " >> ~/.zshrc
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
@@ -60,7 +63,7 @@ set expandtab \n\
 set number \n\
 let g:auto_save = 1 \n\
 let g:auto_save_silent = 1 \n\
-" >> ~/.vimrc
+" >> ~/.nvimrc
 
 RUN echo "\n\
 access=public\n\
