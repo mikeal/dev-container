@@ -5,7 +5,7 @@ WORKDIR /root
 
 RUN apt-get update && apt-get install -y \
   git \
-  neovim \
+  vim \
   zsh \
   tmux \
   locales \
@@ -63,7 +63,8 @@ set expandtab \n\
 set number \n\
 let g:auto_save = 1 \n\
 let g:auto_save_silent = 1 \n\
-" >> ~/.nvimrc
+autocmd FileType vue syntax sync fromstart \n\
+" >> ~/.vimrc
 
 RUN echo "\n\
 access=public\n\
