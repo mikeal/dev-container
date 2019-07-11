@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 RUN zsh -c exit
 
 # Install Rust
-RUN curl https://sh.rustup.rs -sSf | sh
+RUN curl https://sh.rustup.rs -sSfy | sh
 
 # Install gdrive
 RUN go get github.com/prasmussen/gdrive
