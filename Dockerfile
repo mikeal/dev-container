@@ -20,9 +20,10 @@ RUN apt-get update && apt-get install -y \
 RUN zsh -c exit
 
 # Install Rust
-RUN curl https://sh.rustup.rs -sSfy | sh
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Install gdrive
+RUN export GOPATH=$HOME/go
 RUN go get github.com/prasmussen/gdrive
 
 # Install 1password
@@ -44,6 +45,9 @@ export LC_CTYPE=en_US.UTF-8 \n\
 alias coverage='npx http-server coverage' \n\
 export AWS_REGION=us-west-2 \n\
 export AWS_PROFILE=pl \n\
+export GOROOT=/usr/lib/go \n\
+export GOPATH=$HOME/go \n\
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin \n\
 " >> ~/.zshrc
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
