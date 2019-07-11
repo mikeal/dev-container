@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN zsh -c exit
 
+# Install Rust
+RUN curl https://sh.rustup.rs -sSf | sh
+
 # Install 1password
 RUN curl -o 1password.zip https://cache.agilebits.com/dist/1P/op/pkg/v0.5.5/op_linux_amd64_v0.5.5.zip && \
     unzip 1password.zip -d /usr/bin && \
