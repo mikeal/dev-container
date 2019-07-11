@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
   awscli \
   net-tools \
   build-essential \
+  golang \
   jq
 
 RUN zsh -c exit
