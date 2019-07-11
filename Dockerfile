@@ -72,7 +72,7 @@ init-author-name=Mikeal Rogers\n\
 init-author-email=mikeal.rogers@gmail.com\n\
 init-author-url=https://www.mikealrogers.com/\n\
 init-license=(Apache-2.0 AND MIT)\n\
-init-version=1.0.0\n\
+init-version=0.0.0\n\
 " >> ~/.npmrc
 
 RUN vim +PlugInstall +qall
