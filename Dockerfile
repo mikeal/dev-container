@@ -39,12 +39,17 @@ RUN echo "\n\
 export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
 export LC_CTYPE=en_US.UTF-8 \n\
 alias coverage='npx http-server coverage' \n\
+alias tmux='tmux -2' \n\
 export AWS_REGION=us-west-2 \n\
 export AWS_PROFILE=pl \n\
 export GOROOT=/usr/lib/go \n\
 export GOPATH=$HOME/go \n\
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin \n\
 " >> ~/.zshrc
+
+RUN echo "\n\
+set-option -g default-shell /bin/zsh \n\
+" >> ~/.tmux.conf.local
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
 
