@@ -1,2 +1,2 @@
 #!/bin/sh
-docker run -it -p 4000-9000:4000-9000 dev /root/.start
+docker run -it -p 8000-8100:8000-8100 mikeal/dev /bin/zsh
