@@ -47,10 +47,6 @@ export GOPATH=$HOME/go \n\
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin \n\
 " >> ~/.zshrc
 
-RUN echo "\n\
-set-option -g default-shell /bin/zsh \n\
-" >> ~/.tmux.conf.local
-
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
 
 # Configure vim
@@ -101,6 +97,11 @@ EXPOSE 8080
 RUN git clone https://github.com/gpakosz/.tmux.git && \
     ln -s -f .tmux/.tmux.conf && \
     cp .tmux/.tmux.conf.local .
+
+# Configure zsh in tmux
+RUN echo "\n\
+set-option -g default-shell /bin/zsh \n\
+" >> ~/.tmux.conf.local
 
 COPY start.sh .start
 
