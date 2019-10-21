@@ -123,4 +123,6 @@ RUN cargo install starship
 
 RUN echo "\neval \"$(starship init zsh)\""
 
+COPY tmux.conf.txt /root/.tmux.conf.local
+
 # start image with docker run -it -p 8080:8080 dev /root/.start
