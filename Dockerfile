@@ -115,4 +115,12 @@ COPY start.sh .start
 
 RUN mkdir -p /root/.aws
 
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
+
+RUN source /root/.cargo/env
+
+RUN cargo install starship
+
+RUN echo "\neval \"$(starship init zsh)\""
+
 # start image with docker run -it -p 8080:8080 dev /root/.start
