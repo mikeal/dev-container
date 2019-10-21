@@ -57,31 +57,6 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/li
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
 
-# Configure vim
-RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
-    mkdir -p ~/.vim/colors && \
-    curl -L \
-    https://raw.githubusercontent.com/dracula/vim/master/colors/dracula.vim > ~/.vim/colors/dracula.vim
-
-RUN echo "\n\
-call plug#begin('~/.vim/plugged') \n\
-Plug 'vim-scripts/SyntaxComplete' \n\
-Plug 'sheerun/vim-polyglot' \n\
-Plug '907th/vim-auto-save' \n\
-call plug#end() \n\
-syntax on \n\
-highlight Visual cterm=reverse ctermbg=NONE \n\
-set tabstop=2 \n\
-set shiftwidth=2 \n\
-set softtabstop=2 \n\
-set expandtab \n\
-set number \n\
-let g:auto_save = 1 \n\
-let g:auto_save_silent = 1 \n\
-autocmd FileType vue syntax sync fromstart \n\
-" >> ~/.vimrc
-
 RUN echo "\n\
 access=public\n\
 init-author-name=Mikeal Rogers\n\
@@ -90,8 +65,6 @@ init-author-url=https://www.mikealrogers.com/\n\
 init-license=(Apache-2.0 AND MIT)\n\
 init-version=0.0.0\n\
 " >> ~/.npmrc
-
-RUN vim +PlugInstall +qall
 
 # Configure git
 RUN git config --global user.name "Mikeal Rogers" && \
@@ -122,5 +95,11 @@ RUN /root/.cargo/bin/cargo install starship
 RUN echo "\neval \"$(starship init zsh)\""
 
 COPY tmux.conf.txt /root/.tmux.conf.local
+
+RUN mkdir /root/.config
+
+COPY starship.txt /root/.confg/starship.toml
+
+COPY vimrc.txt /root/.vimrc
 
 # start image with docker run -it -p 8080:8080 dev /root/.start
