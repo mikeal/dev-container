@@ -3,10 +3,22 @@ prompt_order=[
     "git_branch",
     "git_state",
     "git_status",
-    "nix_shell",
-    "env_var",
     "cmd_duration",
     "line_break",
     "jobs",
-    "character",
+    "character"
 ]
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷‍"
+stashed = "📦"
+modified = "📝"
+staged = "➕"
+renamed = "👅"
+deleted = "🗑"
+
+
