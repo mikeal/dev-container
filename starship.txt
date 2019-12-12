@@ -10,15 +10,13 @@ prompt_order=[
 ]
 
 [git_status]
-conflicted = "🏳"
-ahead = "🏎💨"
+conflicted = ""
+ahead = "➡️"
 behind = "😰"
 diverged = "😵"
-untracked = "🤷‍"
+untracked = ""
 stashed = "📦"
 modified = "📝"
-staged = "➕"
+staged = "📦"
 renamed = "👅"
-deleted = "🗑"
-
-
+deleted = ""
