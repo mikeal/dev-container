@@ -48,11 +48,10 @@ export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
 export LC_CTYPE=en_US.UTF-8 \n\
 alias coverage='npx http-server coverage' \n\
 alias tmux='tmux -2' \n\
-export AWS_REGION=us-west-2 \n\
-export AWS_PROFILE=pl \n\
 export GOROOT=/usr/lib/go \n\
 export GOPATH=$HOME/go \n\
 source /root/.cargo/env \n\
+alias bfg='java -jar /root/bfg/bfg.jar' \n\
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin \n\
 " >> ~/.zshrc
 
