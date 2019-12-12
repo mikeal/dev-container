@@ -88,9 +88,6 @@ endif
 " SETTINGS: Mappings
 """"""""""""""""""""""""""""""""""""""""
 
-" Leader
-let g:mapleader="\<space>"
-
 " Arrows
 nmap <silent> <left> <esc>:lprev<cr>
 nmap <silent> <right> <esc>:lnext<cr>
