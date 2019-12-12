@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -yq \
   locales \
   curl \
   unzip \
-  awscli \
   net-tools \
   build-essential \
   golang \
@@ -55,7 +54,14 @@ RUN apt-get update && apt-get install -yq \
   xdg-utils \
   wget \
   groff \
+  python3-pip \
   default-jdk
+
+# Install awscli-1
+RUN pip3 install awscli --upgrade --user
+
+# Install awscli-2
+RUN curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
   
 # Install git-lfs
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install git-lfs
@@ -79,7 +85,6 @@ RUN locale-gen
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 RUN echo "\n\
-export PATH=$PATH:./node_modules/.bin:../node_modules/.bin\n\
 export LC_CTYPE=en_US.UTF-8\n\
 alias coverage='npx http-server coverage'\n\
 alias tmux='tmux -2'\n\
@@ -87,7 +92,7 @@ export GOROOT=/usr/lib/go\n\
 export GOPATH=$HOME/go\n\
 export AWS_PROFILE=default\n\
 source /root/.cargo/env\n\
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin \n\
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin \n\
 " >> ~/.zshrc
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
