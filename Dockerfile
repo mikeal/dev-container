@@ -22,8 +22,8 @@ RUN apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 lib
   libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
   libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
   libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
-  ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-
+  ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget git-lfs \
+  default-jdk
 
 RUN zsh -c exit
 
@@ -44,14 +44,14 @@ RUN locale-gen
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 RUN echo "\n\
-export PATH=$PATH:./node_modules/.bin:../node_modules/.bin \n\
-export LC_CTYPE=en_US.UTF-8 \n\
-alias coverage='npx http-server coverage' \n\
-alias tmux='tmux -2' \n\
-export GOROOT=/usr/lib/go \n\
-export GOPATH=$HOME/go \n\
-source /root/.cargo/env \n\
-alias bfg='java -jar /root/bfg/bfg.jar' \n\
+export PATH=$PATH:./node_modules/.bin:../node_modules/.bin\n\
+export LC_CTYPE=en_US.UTF-8\n\
+alias coverage='npx http-server coverage'\n\
+alias tmux='tmux -2'\n\
+export GOROOT=/usr/lib/go\n\
+export GOPATH=$HOME/go\n\
+export AWS_PROFILE=default\n\
+source /root/.cargo/env\n\
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin \n\
 " >> ~/.zshrc
 
@@ -71,6 +71,12 @@ RUN git config --global user.name "Mikeal Rogers" && \
     git config --global user.email mikeal.rogers@gmail.com && \
     git config --global core.editor vim && \
     git config --global credential.helper 'store --file ~/.git-credentials'
+    
+RUN echo "\n[filter \"lfs\"]\n\
+        clean = git-lfs clean -- %f\n\
+        smudge = git-lfs smudge -- %f\n\
+        process = git-lfs filter-process\n\
+        required = true" >> ~/.gitconfig
 
 EXPOSE 8080
 
@@ -101,5 +107,11 @@ RUN mkdir /root/.config
 COPY starship.txt /root/.confg/starship.toml
 
 COPY vimrc.txt /root/.vimrc
+
+ARG BFG_VERSION=1.12.14
+
+RUN wget --quiet http://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_VERSION}.jar
+
+RUN echo "\nalias bfg='java -jar /root/bfg-${BFG_VERSION}.jar'" >> ~/.zshrc
 
 # start image with docker run -it -p 8080:8080 dev /root/.start
