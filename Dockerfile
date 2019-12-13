@@ -90,6 +90,7 @@ alias tmux='tmux -2'\n\
 export GOROOT=/usr/lib/go\n\
 export GOPATH=$HOME/go\n\
 export AWS_PROFILE=default\n\
+export AWS_REGION=us-west-2\n\
 source /root/.cargo/env\n\
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin \n\
 " >> ~/.zshrc
