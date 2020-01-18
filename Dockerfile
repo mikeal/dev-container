@@ -3,7 +3,7 @@ FROM node:12
 
 WORKDIR /root
 
-RUN rm -rf /var/lib/apt/lists/* && apt-get update && apt-get install -yq \
+RUN rm -rf /var/lib/apt/lists/* && apt-get update && apt-get install -yq --no-install-recommends \
   git \
   vim \
   zsh \
@@ -63,7 +63,7 @@ RUN pip3 install awscli --upgrade --user
 # Install awscli-2
 RUN curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && rm -rf aws*
 # Install git-lfs
-RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install git-lfs
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get -y --no-install-recommends install git-lfs
 
 RUN zsh -c exit
 
