@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:unstable
 FROM node:12
 
 WORKDIR /root
