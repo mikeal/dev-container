@@ -93,7 +93,7 @@ export GOPATH=$HOME/go\n\
 export AWS_PROFILE=default\n\
 export AWS_REGION=us-west-2\n\
 source /root/.cargo/env\n\
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin \n\
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin:/usr/lib/go/bin:/root/go/bin:./node_modules/.bin:../node_modules/.bin:/root/.cargo/bin \n\
 " >> ~/.zshrc
 
 RUN curl -L https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme > ~/.oh-my-zsh/themes/dracula.zsh-theme
