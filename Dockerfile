@@ -55,6 +55,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
   wget \
   groff \
   python3-pip \
+  python3-setuptools \
   default-jdk && rm -rf /var/lib/apt/lists/* 
 
 # Install awscli-1
