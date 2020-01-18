@@ -3,7 +3,7 @@ FROM node:12
 
 WORKDIR /root
 
-RUN apt-get update && apt-get install -yq \
+RUN rm -rf /var/lib/apt/lists/* && apt-get update && apt-get install -yq \
   git \
   vim \
   zsh \
