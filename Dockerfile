@@ -3,7 +3,7 @@ FROM node:12
 
 WORKDIR /root
 
-RUN rm -rf /var/lib/apt/lists/* && apt-get update && apt-get install -yq --no-install-recommends \
+RUN apt-get update && apt-get install -yq --no-install-recommends \
   git \
   vim \
   zsh \
@@ -55,7 +55,7 @@ RUN rm -rf /var/lib/apt/lists/* && apt-get update && apt-get install -yq --no-in
   wget \
   groff \
   python3-pip \
-  default-jdk
+  default-jdk && rm -rf /var/lib/apt/lists/* 
 
 # Install awscli-1
 RUN pip3 install awscli --upgrade --user
