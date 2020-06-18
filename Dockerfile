@@ -139,7 +139,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 
 RUN /root/.cargo/bin/cargo install starship
 
-RUN echo "\neval \"$(starship init zsh)\""
+RUN /root/.cargo/bin/starship init zsh
 
 COPY tmux.conf.txt /root/.tmux.conf.local
 
