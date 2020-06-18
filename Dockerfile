@@ -149,9 +149,9 @@ COPY starship.txt /root/.confg/starship.toml
 
 COPY vimrc.txt /root/.vimrc
 
-ARG BFG_VERSION=1.12.14
+ARG BFG_VERSION=1.13.0
 
-RUN wget --quiet http://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_VERSION}.jar
+RUN wget --quiet https://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_VERSION}.jar
 
 RUN echo "\nalias bfg='java -jar /root/bfg-${BFG_VERSION}.jar'" >> ~/.zshrc
 
